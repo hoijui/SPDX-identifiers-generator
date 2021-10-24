@@ -1,0 +1,37 @@
+# SPDX-FileCopyrightText: 2021 Robin Vobruba <hoijui.quaero@gmail.com>
+#
+# SPDX-License-Identifier: Unlicense
+
+name: build
+on:
+  schedule:
+    - cron: "1 2 * * 3" # at 01:02 every Wednesday, UTC
+  push:
+    branches: [ master ]
+    paths:
+      - 'ci-run'
+      - '.github/workflows/generate.yml'
+jobs:
+  push_to_registry:
+    name: Compile
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Check out this repo"
+        uses: actions/checkout@v2
+      - name: "Create the build dir"
+        run: mkdir -p build
+      - name: "Check out the 'big' repo"
+        uses: actions/checkout@v2
+        with:
+          repository: 'spdx/license-list-XML'
+          path: 'build/big'
+      - name: "Check out the 'small' repo"
+        uses: actions/checkout@v2
+        with:
+          repository: 'hoijui/SPDX-identifiers'
+          path: 'build/small'
+          token: ${{ secrets.API_TOKEN_GITHUB }}
+          fetch-depth: 0
+      - name: "Generate: spdx/license-list-XML -> SPDX-identifiers"
+        run: |
+          ./ci-run --push
