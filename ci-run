@@ -291,7 +291,7 @@ then
 fi
 
 git -C "$big_repo_dir" fetch
-git -C "$big_repo_dir" rebase origin/master
+git -C "$big_repo_dir" rebase origin/main
 
 # Makes sure we have at least a basic "small" repo
 # to mirror the releases of the "big" repo to
