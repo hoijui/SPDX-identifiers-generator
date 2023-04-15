@@ -90,6 +90,10 @@ function echo_readme() {
 	echo
 	echo "The \`master\` branch of this repo will always correspond"
 	echo "to the latest release of the original repo."
+	echo "You may NOT assume, as is commonly the case,"
+	echo "that the history of this repo remains in-tact."
+	echo "To the contrary, it is highly likely that the whole history"
+	echo "will be regenerated at any moment."
 	echo "The data can be found in the form of single column CSV files without a header row,"
 	echo "or in other words, a text file with one identifier per line."
 	echo
