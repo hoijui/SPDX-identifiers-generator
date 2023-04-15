@@ -68,9 +68,11 @@ function print_help() {
 
 function echo_readme() {
 	echo "<!--"
+# REUSE-IgnoreStart
 	echo "SPDX-FileCopyrightText: $(date +'%Y') $AUTHOR"
 	echo
 	echo "SPDX-License-Identifier: $TEXT_LICENSE"
+# REUSE-IgnoreEnd
 	echo "-->"
 	echo
 	echo "# SPDX Identifiers"
@@ -105,9 +107,11 @@ function echo_readme() {
 }
 
 function echo_dot_license() {
+# REUSE-IgnoreStart
 	echo "SPDX-FileCopyrightText: $(date +'%Y') $AUTHOR"
 	echo
 	echo "SPDX-License-Identifier: $TEXT_LICENSE"
+# REUSE-IgnoreEnd
 }
 
 function construct_origin_url() {
