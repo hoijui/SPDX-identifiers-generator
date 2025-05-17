@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# SPDX-FileCopyrightText: 2021 Robin Vobruba <hoijui.quaero@gmail.com>
+# SPDX-FileCopyrightText: 2021 - 2025 Robin Vobruba <hoijui.quaero@gmail.com>
 #
 # SPDX-License-Identifier: Unlicense
 
@@ -180,7 +180,7 @@ function initial_commit() {
 	git -C "$small_repo_dir" add \
 		"$small_repo_dir/LICENSE*"
 
-	# Commmits everything
+	# Commits everything
 	git -C "$small_repo_dir" commit \
 		-m "Initial commit" \
 		> /dev/null
@@ -201,7 +201,7 @@ function list_xml_file_names() {
 function git_date() {
 	# this could be a SHA or a branch name
 	rev="$1"
-	# this should be either "a" or "c"
+	# this should be either "a" (for author) or "c" (for committer)
 	date_type="$2"
 
 	git -C "$big_repo_dir" show --no-patch --oneline --format="%${date_type}I" "$rev"
@@ -224,7 +224,7 @@ function make_rev() {
 	export GIT_AUTHOR_DATE
 	export GIT_COMMITTER_DATE
 	echo "    author date:   $GIT_AUTHOR_DATE"
-	echo "    comitter date: $GIT_COMMITTER_DATE"
+	echo "    committer date: $GIT_COMMITTER_DATE"
 
 	list_xml_file_names "$big_repo_dir/src" > "$licenses_file"
 	list_xml_file_names "$big_repo_dir/src/exceptions" > "$exceptions_file"
@@ -243,7 +243,7 @@ function make_rev() {
 	fi
 }
 
-# Calls `make_rev` if the revision is not yet pressents,
+# Calls `make_rev` if the revision is not yet present,
 # otherwise does nothing.
 function ensure_rev() {
 	rev="$1"
