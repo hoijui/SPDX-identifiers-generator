@@ -1,8 +1,8 @@
-# SPDX-FileCopyrightText: 2021 Robin Vobruba <hoijui.quaero@gmail.com>
+# SPDX-FileCopyrightText: 2021 - 2025 Robin Vobruba <hoijui.quaero@gmail.com>
 #
 # SPDX-License-Identifier: Unlicense
 
-name: build
+name: generate
 on:
   schedule:
     - cron: "1 2 * * 3" # at 01:02 every Wednesday, UTC
@@ -17,19 +17,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Check out this repo"
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: "Create the build dir"
         run: mkdir -p build
 
       - name: "Check out the 'big' repo"
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: 'spdx/license-list-XML'
           path: 'build/big'
 
       - name: "Check out the 'small' repo"
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: 'hoijui/SPDX-identifiers'
           path: 'build/small'
